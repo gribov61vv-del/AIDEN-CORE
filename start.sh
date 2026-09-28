@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -u
-ROOT="$HOME/AIDEN_SYSTEM"
-WOVPY="$ROOT/servers/wov/venv/bin/python"
+ROOT="$HOME/AIDEN-CORE"
+WOVPY="python"
 PIKAPY="$HOME/venv_aiden/bin/python"
 LOG="$ROOT/logs"
 mkdir -p "$LOG"
