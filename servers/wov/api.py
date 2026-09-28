@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 from flask import Flask, request, jsonify
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import core
 
 app = Flask(__name__)
