@@ -1,0 +1,16 @@
+AIDEN
+WOV-CORE
+SYMBIOSIS
+PIKACHU
+JARVIS
+DEMON
+AI-CORE / AI-OS
+WOWCORE
+BUG
+BUG-TRANSFORMER
+ЖУК
+ЖУК-ПЕРЕВЁРТЫШ
+
+ВАЖНО:
+ЖУК и ЖУК-ПЕРЕВЁРТЫШ — РАЗНЫЕ ВЕТКИ.
+Оригинальные каталоги не удаляются.

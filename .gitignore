@@ -1,0 +1,43 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.pid
+*.out
+.env
+.env.*
+*.key
+*.pem
+*.token
+*secret*
+*password*
+*credentials*
+*.tar.gz
+*.zip
+*.gguf
+*.db
+*.sqlite
+
+# Runtime state / private memory
+aiden_memory.json
+**/aiden_memory.json
+**/memory/
+**/logs/
+**/index/
+**/*_history.json
+**/*_state.json
+**/*.heartbeat
+
+# Runtime/autostart state
+**/state/
+**/last_boot
+
+# Temporary / backup source copies
+*.save
+*.bak
+*.tmp
+
+# Symbiosis runtime logs
+Symbiosis/*_log.txt
+
+aiden_system/config.json

@@ -1,0 +1,107 @@
+{
+  "mode": "auto",
+  "local": true,
+  "providers": [],
+  "nodes": [
+    {
+      "name": "core.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/core.py"
+    },
+    {
+      "name": "buildozer.spec",
+      "type": "PROJECT",
+      "path": "/data/data/com.termux/files/home/wov_core/buildozer.spec"
+    },
+    {
+      "name": "modules.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/modules.py"
+    },
+    {
+      "name": "api.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/api.py"
+    },
+    {
+      "name": "aiden_core.py",
+      "type": "AIDEN",
+      "path": "/data/data/com.termux/files/home/wov_core/aiden_core.py"
+    },
+    {
+      "name": "start.sh",
+      "type": "PROJECT",
+      "path": "/data/data/com.termux/files/home/wov_core/start.sh"
+    },
+    {
+      "name": "aiden.py",
+      "type": "AIDEN",
+      "path": "/data/data/com.termux/files/home/wov_core/aiden_core/aiden_core/aiden.py"
+    },
+    {
+      "name": "api.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/pikachu/api.py"
+    },
+    {
+      "name": "core.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/pikachu/core/core.py"
+    },
+    {
+      "name": "core.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/core.py"
+    },
+    {
+      "name": "modules.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/modules.py"
+    },
+    {
+      "name": "api.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/api.py"
+    },
+    {
+      "name": "memory.json",
+      "type": "MEMORY",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/data/memory.json"
+    },
+    {
+      "name": "chatgpt_module.py",
+      "type": "CHATGPT",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/modules/chatgpt_module.py"
+    },
+    {
+      "name": "chatgpt_module.py",
+      "type": "CHATGPT",
+      "path": "/data/data/com.termux/files/home/wov_core/modules/chatgpt_module.py"
+    },
+    {
+      "name": "aiden_memory.json",
+      "type": "MEMORY",
+      "path": "/data/data/com.termux/files/home/aiden_system/aiden_memory.json"
+    },
+    {
+      "name": "connect_chatgpt.py",
+      "type": "CHATGPT",
+      "path": "/data/data/com.termux/files/home/aiden_system/connect_chatgpt.py"
+    },
+    {
+      "name": "aiden_hub.py",
+      "type": "AIDEN",
+      "path": "/data/data/com.termux/files/home/aiden_system/aiden_hub.py"
+    },
+    {
+      "name": "memory_index.json",
+      "type": "MEMORY",
+      "path": "/data/data/com.termux/files/home/aiden_system/memory/memory_index.json"
+    },
+    {
+      "name": "bootstrap.json",
+      "type": "MEMORY",
+      "path": "/data/data/com.termux/files/home/aiden_system/memory/bootstrap.json"
+    }
+  ]
+}

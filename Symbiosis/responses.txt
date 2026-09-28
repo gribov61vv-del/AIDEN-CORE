@@ -1,0 +1,4 @@
+[2026-09-01 15:05:15.712704]
+USER: Скажи: АЙДЕН НА СВЯЗИ
+AIDEN: [LOCAL INFERENCE ERROR] Command '['/data/data/com.termux/files/home/llama.cpp/build/bin/llama-cli', '-m', '/data/data/com.termux/files/home/llama.cpp/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf', '-p', 'Ты — Aiden, локальное интеллектуальное ядро Symbiosis.\nТы работаешь на локальной языковой модели.\nНе заявляй о выполнении действий, которых не выполнял.\nОтвечай по существу.\n\n\nПользователь:\nСкажи: АЙДЕН НА СВЯЗИ\n\nAiden:\n', '-n', '512', '--temp', '0.7']' timed out after 600 seconds
+

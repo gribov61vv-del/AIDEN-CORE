@@ -1,0 +1,167 @@
+{
+  "system": "AIDEN",
+  "mode": "local",
+  "created": "2026-08-18T14:13:28.496243",
+  "nodes": [
+    {
+      "name": "core.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/core.py",
+      "sha256": "2fb1e052029db33d",
+      "size": 1544,
+      "discovered": "2026-08-18T14:13:28.453975"
+    },
+    {
+      "name": "buildozer.spec",
+      "type": "PROJECT",
+      "path": "/data/data/com.termux/files/home/wov_core/buildozer.spec",
+      "sha256": "119703889086e0b0",
+      "size": 226,
+      "discovered": "2026-08-18T14:13:28.454099"
+    },
+    {
+      "name": "modules.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/modules.py",
+      "sha256": "9e0631dce96b795a",
+      "size": 129,
+      "discovered": "2026-08-18T14:13:28.454184"
+    },
+    {
+      "name": "api.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/api.py",
+      "sha256": "27d943c303cdbd0b",
+      "size": 505,
+      "discovered": "2026-08-18T14:13:28.454255"
+    },
+    {
+      "name": "aiden_core.py",
+      "type": "AIDEN",
+      "path": "/data/data/com.termux/files/home/wov_core/aiden_core.py",
+      "sha256": "e472ca7f949736a6",
+      "size": 1633,
+      "discovered": "2026-08-18T14:13:28.454330"
+    },
+    {
+      "name": "start.sh",
+      "type": "PROJECT",
+      "path": "/data/data/com.termux/files/home/wov_core/start.sh",
+      "sha256": "d402079ea87f9543",
+      "size": 14,
+      "discovered": "2026-08-18T14:13:28.454442"
+    },
+    {
+      "name": "aiden.py",
+      "type": "AIDEN",
+      "path": "/data/data/com.termux/files/home/wov_core/aiden_core/aiden_core/aiden.py",
+      "sha256": "cd362b511519ba60",
+      "size": 2088,
+      "discovered": "2026-08-18T14:13:28.454718"
+    },
+    {
+      "name": "api.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/pikachu/api.py",
+      "sha256": "7653bd326f4380d3",
+      "size": 429,
+      "discovered": "2026-08-18T14:13:28.454849"
+    },
+    {
+      "name": "core.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/pikachu/core/core.py",
+      "sha256": "25b244660f647880",
+      "size": 129,
+      "discovered": "2026-08-18T14:13:28.454960"
+    },
+    {
+      "name": "core.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/core.py",
+      "sha256": "1d70864460af933d",
+      "size": 1012,
+      "discovered": "2026-08-18T14:13:28.455108"
+    },
+    {
+      "name": "modules.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/modules.py",
+      "sha256": "348f2a1204877434",
+      "size": 130,
+      "discovered": "2026-08-18T14:13:28.455177"
+    },
+    {
+      "name": "api.py",
+      "type": "WOV-CORE",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/api.py",
+      "sha256": "c0556c769c43c59f",
+      "size": 629,
+      "discovered": "2026-08-18T14:13:28.455244"
+    },
+    {
+      "name": "memory.json",
+      "type": "MEMORY",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/data/memory.json",
+      "sha256": "4f53cda18c2baa0c",
+      "size": 2,
+      "discovered": "2026-08-18T14:13:28.455353"
+    },
+    {
+      "name": "chatgpt_module.py",
+      "type": "CHATGPT",
+      "path": "/data/data/com.termux/files/home/wov_core/wov_core/modules/chatgpt_module.py",
+      "sha256": "c3ceaf0e2ceb37ee",
+      "size": 341,
+      "discovered": "2026-08-18T14:13:28.455470"
+    },
+    {
+      "name": "chatgpt_module.py",
+      "type": "CHATGPT",
+      "path": "/data/data/com.termux/files/home/wov_core/modules/chatgpt_module.py",
+      "sha256": "2af31bebbad8cf3d",
+      "size": 339,
+      "discovered": "2026-08-18T14:13:28.455562"
+    },
+    {
+      "name": "aiden_memory.json",
+      "type": "MEMORY",
+      "path": "/data/data/com.termux/files/home/aiden_system/aiden_memory.json",
+      "sha256": "3da801abd2fc6160",
+      "size": 32583710,
+      "discovered": "2026-08-18T14:13:28.493070"
+    },
+    {
+      "name": "connect_chatgpt.py",
+      "type": "CHATGPT",
+      "path": "/data/data/com.termux/files/home/aiden_system/connect_chatgpt.py",
+      "sha256": "f4a8630859d11e04",
+      "size": 952,
+      "discovered": "2026-08-18T14:13:28.493241"
+    },
+    {
+      "name": "aiden_hub.py",
+      "type": "AIDEN",
+      "path": "/data/data/com.termux/files/home/aiden_system/aiden_hub.py",
+      "sha256": "5eaf7b6c429a0c04",
+      "size": 5685,
+      "discovered": "2026-08-18T14:13:28.493360"
+    },
+    {
+      "name": "memory_index.json",
+      "type": "MEMORY",
+      "path": "/data/data/com.termux/files/home/aiden_system/memory/memory_index.json",
+      "sha256": "b21ec39633703e62",
+      "size": 1139180,
+      "discovered": "2026-08-18T14:13:28.495050"
+    },
+    {
+      "name": "bootstrap.json",
+      "type": "MEMORY",
+      "path": "/data/data/com.termux/files/home/aiden_system/memory/bootstrap.json",
+      "sha256": "98995f9cd4389c8a",
+      "size": 759609,
+      "discovered": "2026-08-18T14:13:28.496068"
+    }
+  ]
+}
