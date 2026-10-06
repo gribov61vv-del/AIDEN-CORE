@@ -7,6 +7,7 @@ import core
 
 app = Flask(__name__)
 app.json.ensure_ascii = False
+app.json.mimetype = "application/json; charset=utf-8"
 
 @app.route("/ping")
 def ping():
