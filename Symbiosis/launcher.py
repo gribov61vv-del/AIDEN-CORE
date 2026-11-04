@@ -10,7 +10,7 @@ BASE = Path(__file__).resolve().parent
 PYTHON = sys.executable
 
 WORKERS = [
-    "aiden_integration.py",
+    "triad_aiden_bridge.py",
     "bug_core.py",
     "bug_transformer_core.py",
     "support_core.py",

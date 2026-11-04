@@ -1,0 +1,17 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -u
+
+termux-wake-lock >/dev/null 2>&1 || true
+sleep 10
+
+BOOT_SCRIPT="$HOME/SYMBIOSIS/bin/symbiosis_autostart.sh"
+LOG="$HOME/SYMBIOSIS/logs/autostart.log"
+mkdir -p "$HOME/SYMBIOSIS/logs"
+
+if [ -f "$BOOT_SCRIPT" ]; then
+    echo "[$(date '+%F %T')] Termux:Boot invoking $BOOT_SCRIPT" >> "$LOG"
+    exec bash "$BOOT_SCRIPT"
+else
+    echo "[$(date '+%F %T')] ERROR: missing boot script: $BOOT_SCRIPT" >> "$LOG"
+    exit 1
+fi

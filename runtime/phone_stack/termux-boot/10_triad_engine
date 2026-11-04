@@ -1,0 +1,13 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Recovery guard only. START_ALL.sh is the primary owner of TRIAD startup.
+# Delay avoids racing the unified AIDEN boot sequence.
+BASE="$HOME/AIDEN-CORE/triad_engine"
+LOG="$HOME/AIDEN-CORE/logs/triad_engine_boot.log"
+mkdir -p "$HOME/AIDEN-CORE/logs"
+sleep 30
+if curl -fsS --max-time 2 http://127.0.0.1:8002/ping >/dev/null 2>&1; then
+  echo "[$(date '+%F %T')] TRIAD already online; no second instance started" >> "$LOG"
+  exit 0
+fi
+echo "[$(date '+%F %T')] TRIAD offline after primary boot; recovery start requested" >> "$LOG"
+"$BASE/start.sh" >> "$LOG" 2>&1
