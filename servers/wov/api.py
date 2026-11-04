@@ -273,7 +273,7 @@ def system_status():
             local_state = {
                 "mode": state.get("mode"),
                 "api": state.get("api"),
-                "api_key": state.get("api_key"),
+                "api_key_configured": bool(state.get("api_key")),
                 "model_exists": Path(state.get("model", "")).is_file(),
                 "engine_exists": Path(state.get("engine", "")).is_file(),
             }
