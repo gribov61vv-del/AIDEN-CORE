@@ -23,5 +23,24 @@ assert triad['variance_population'] == 0
 assert triad['balance_index_0_to_1'] == 1
 assert all(abs(x - 1/3) < 1e-9 for x in triad['normalized_shares'])
 assert t.search_memory('цифровой материк', 3), 'seed memory should be searchable'
+
+# Natural Russian arithmetic is normalized, then passed through the same safe AST evaluator.
+for phrase, expected in [
+    ('Сколько будет два плюс два?', 4),
+    ('чему равно двадцать три минус пять?', 18),
+    ('посчитай три умножить на четыре', 12),
+    ('пять разделить на два', 2.5),
+    ('сто двадцать три плюс семь', 130),
+    ('2 плюс 2', 4),
+    ('два - один', 1),
+    ('два × три', 6),
+]:
+    result = t.ask(phrase)
+    assert result['calculation'] is not None, (phrase, result)
+    assert abs(float(result['calculation']['result']) - expected) < 1e-9, (phrase, result)
+
+assert t.normalize_russian_arithmetic('два три плюс два') is None
+assert t.normalize_russian_arithmetic('запусти терминал плюс два') is None
+assert t.ask('Сколько будет два плюс два?')['calculation']['result'] == 4
 print('TRIAD regression tests: PASS')
 print('Arithmetic, unsafe-input rejection, triple-vector invariants, and memory search verified.')

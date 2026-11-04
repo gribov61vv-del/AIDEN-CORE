@@ -136,6 +136,86 @@ def safe_calculate(expression: str) -> dict[str, Any] | None:
         return None
 
 
+# Russian number words accepted only as a constrained arithmetic surface syntax.
+_RU_NUMBERS = {
+    "ноль": 0, "нуль": 0,
+    "один": 1, "одна": 1, "одно": 1,
+    "два": 2, "две": 2, "три": 3, "четыре": 4, "пять": 5,
+    "шесть": 6, "семь": 7, "восемь": 8, "девять": 9,
+    "десять": 10, "одиннадцать": 11, "двенадцать": 12,
+    "тринадцать": 13, "четырнадцать": 14, "пятнадцать": 15,
+    "шестнадцать": 16, "семнадцать": 17, "восемнадцать": 18,
+    "девятнадцать": 19, "двадцать": 20, "тридцать": 30,
+    "сорок": 40, "пятьдесят": 50, "шестьдесят": 60,
+    "семьдесят": 70, "восемьдесят": 80, "девяносто": 90,
+    "сто": 100, "двести": 200, "триста": 300, "четыреста": 400,
+    "пятьсот": 500, "шестьсот": 600, "семьсот": 700,
+    "восемьсот": 800, "девятьсот": 900,
+}
+_RU_PREFIXES = ("сколько будет ", "чему равно ", "посчитай ", "вычисли ", "рассчитай ")
+_RU_TOKEN_RE = re.compile(r"[а-яё]+|[0-9]+(?:[.,][0-9]+)?|[()+*/%\-−×÷]", re.IGNORECASE)
+
+
+def normalize_russian_arithmetic(query: str) -> str | None:
+    """Convert a narrow, fully-consumed Russian arithmetic phrase to numeric syntax."""
+    text = query.strip().lower().replace("ё", "е")
+    for prefix in _RU_PREFIXES:
+        if text.startswith(prefix):
+            text = text[len(prefix):]
+            break
+    text = text.rstrip(" ?!.,")
+    raw = _RU_TOKEN_RE.findall(text)
+    if not raw:
+        return None
+
+    tokens: list[str] = []
+    i = 0
+    while i < len(raw):
+        word = raw[i]
+        if word in _RU_NUMBERS:
+            total = 0
+            previous = 1000
+            while i < len(raw) and raw[i] in _RU_NUMBERS:
+                value = _RU_NUMBERS[raw[i]]
+                # Number words must descend strictly: "двадцать три" is valid,
+                # while an ambiguous sequence such as "два три" is rejected.
+                if value >= previous:
+                    return None
+                total += value
+                previous = value
+                i += 1
+            tokens.append(str(total))
+            continue
+        if re.fullmatch(r"[0-9]+(?:[.,][0-9]+)?", word):
+            tokens.append(word.replace(",", "."))
+        elif word in {"+", "-", "−", "*", "/", "%", "(", ")", "×", "÷"}:
+            tokens.append(word)
+        elif word in {"плюс", "прибавить"}:
+            tokens.append("+")
+        elif word in {"минус", "вычесть"}:
+            tokens.append("-")
+        elif word in {"умножить", "умножить-на"}:
+            tokens.append("*")
+            if i + 1 < len(raw) and raw[i + 1] == "на":
+                i += 1
+        elif word in {"разделить", "делить"}:
+            tokens.append("/")
+            if i + 1 < len(raw) and raw[i + 1] == "на":
+                i += 1
+        elif word == "на" and tokens and tokens[-1] in {"*", "/"}:
+            pass
+        else:
+            return None
+        i += 1
+
+    expression = " ".join(tokens)
+    # Require an operator and alternating operand/operator structure; safe_calculate
+    # performs the final AST whitelist and numeric-bound checks.
+    if not any(op in tokens for op in ("+", "-", "*", "/", "%", "×", "÷")):
+        return None
+    return expression
+
+
 def triple_check(query: str, memories: list[dict[str, Any]], calculation: dict[str, Any] | None) -> dict[str, Any]:
     evidence = "found" if memories else "not_found"
     logic = "computed" if calculation is not None else "no_safe_calculation"
@@ -177,6 +257,10 @@ def ask(query: str) -> dict[str, Any]:
     if not query:
         return {"answer": "Пустой запрос. Напиши вопрос или выражение.", "trace": triple_check(query, [], None), "memories": []}
     calculation = safe_calculate(query)
+    if calculation is None:
+        normalized = normalize_russian_arithmetic(query)
+        if normalized is not None:
+            calculation = safe_calculate(normalized)
     memories = search_memory(query, 5)
     trace = triple_check(query, memories, calculation)
     if calculation is not None:
