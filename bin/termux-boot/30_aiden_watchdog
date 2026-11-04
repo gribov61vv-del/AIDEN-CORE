@@ -1,0 +1,13 @@
+#!/data/data/com.termux/files/usr/bin/bash
+# Start the local health watchdog after the unified stack has had time to boot.
+set -u
+LOG="$HOME/AIDEN_FINAL_BUILD/logs/health_watchdog_boot.log"
+mkdir -p "$(dirname "$LOG")"
+sleep 75
+SCRIPT="$HOME/AIDEN_FINAL_BUILD/bin/HEALTH_WATCHDOG.sh"
+if [ -x "$SCRIPT" ]; then
+  nohup "$SCRIPT" >> "$LOG" 2>&1 </dev/null &
+  echo "[$(date '+%F %T')] watchdog launch requested PID $!" >> "$LOG"
+else
+  echo "[$(date '+%F %T')] watchdog script missing: $SCRIPT" >> "$LOG"
+fi
