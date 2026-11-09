@@ -48,7 +48,7 @@ def triangle_inequality_audit(node_ids: list[str], constraints: Iterable[dict[st
                     violations.append({"nodes": [a, b, c], "side_lengths": {"ab": ab, "ac": ac, "bc": bc}, "violation": sides[2] - sides[0] - sides[1]})
     return violations
 
-def infer_geometry(node_ids: list[str], distance_constraints: list[dict[str, Any]], dimensions: int = 3, iterations: int = 4000, learning_rate: float = 0.01) -> dict[str, Any]:
+def infer_geometry(node_ids: list[str], distance_constraints: list[dict[str, Any]], dimensions: int = 3, iterations: int = 4000, learning_rate: float = 0.01, reject_triangle_violations: bool = True) -> dict[str, Any]:
     """Fit coordinates to weighted pairwise distances using gradient descent.
 
     Each constraint has: {"a": node_id, "b": node_id, "distance": positive_float, "weight": positive_float?}
@@ -103,8 +103,10 @@ def infer_geometry(node_ids: list[str], distance_constraints: list[dict[str, Any
         stack.extend(adjacency[node] - visited)
     if len(visited) != len(node_ids):
         raise GeometryInputError("distance-constraint graph must be connected")
+    if not isinstance(reject_triangle_violations, bool):
+        raise GeometryInputError("reject_triangle_violations must be boolean")
     violations = triangle_inequality_audit(node_ids, normalized)
-    if violations:
+    if violations and reject_triangle_violations:
         return {"status": "inconsistent_constraints", "coordinates": None, "triangle_inequality_violations": violations, "message": "Known edge lengths violate a triangle inequality; no geometry was fitted."}
     n = len(node_ids)
     golden = math.pi * (3.0 - math.sqrt(5.0))
@@ -159,7 +161,8 @@ def infer_geometry(node_ids: list[str], distance_constraints: list[dict[str, Any
         "weighted_mean_squared_distance_error": final_sum / weight_sum,
         "initial_weighted_mean_squared_distance_error": initial_stress,
         "edge_residuals": residuals,
-        "triangle_inequality_violations": [],
+        "triangle_inequality_violations": violations,
+        "triangle_policy": "rejected" if reject_triangle_violations else "reported_as_diagnostic_only",
         "identifiability": "Coordinates are defined only up to rigid transformations; sparse constraints may be underdetermined. A low residual is not proof of a unique or true structure.",
         "scientific_boundary": "Educational distance-geometry solver only. It has no protein sequence model, MSA, learned parameters, Evoformer, templates, physical energy model, or experimental validation; it is not AlphaFold and cannot predict protein folds."
     }

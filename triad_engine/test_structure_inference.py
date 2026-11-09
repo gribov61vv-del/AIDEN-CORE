@@ -37,6 +37,19 @@ class GeometryTests(unittest.TestCase):
         with self.assertRaises(GeometryInputError):
             infer_geometry(["A", "B"], [{"a": "A", "b": "B", "distance": float("nan")}])
 
+
+    def test_noisy_triangle_can_be_reported_without_hard_rejection(self):
+        constraints = [
+            {"a": "A", "b": "B", "distance": 1},
+            {"a": "B", "b": "C", "distance": 1},
+            {"a": "A", "b": "C", "distance": 2.1},
+        ]
+        result = infer_geometry(["A", "B", "C"], constraints, dimensions=2,
+                                iterations=100, reject_triangle_violations=False)
+        self.assertEqual(result["status"], "fitted")
+        self.assertEqual(len(result["triangle_inequality_violations"]), 1)
+        self.assertEqual(result["triangle_policy"], "reported_as_diagnostic_only")
+
     def test_weighted_fit_returns_residuals(self):
         result = infer_geometry(["A", "B", "C"], [
             {"a": "A", "b": "B", "distance": 2, "weight": 10},

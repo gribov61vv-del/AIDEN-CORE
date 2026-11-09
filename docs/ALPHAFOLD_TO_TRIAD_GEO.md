@@ -87,3 +87,15 @@ Keep the three-pass TRIAD discipline:
 3. independent consistency checks and caveats.
 
 Keep this geometry prototype separate from Model A (“digital continent”), Model B (invariant-mass hypothesis), and the unverified triple-energy-node hypothesis. No physical connection is implied by the shared use of graphs or iterative refinement.
+
+
+## TRIAD-GEO method comparison extension
+
+A second research layer now compares three distinct numerical approaches:
+- weighted gradient descent (the original transparent prototype);
+- weighted SMACOF majorization for connected sparse graphs;
+- classical metric MDS for complete distance matrices.
+
+The methods, tests, and reproducible synthetic benchmark live in `triad_engine/geometry_methods.py`, `triad_engine/test_geometry_methods.py`, and `triad_engine/benchmark_geometry.py`. See `triad_engine/GEOMETRY_METHODS.md` for benchmark results and interpretation.
+
+Important refinement: exact triangle-inequality rejection remains the default. When observations are known to contain measurement noise, the original fitter can be explicitly run with `reject_triangle_violations=False`; violations are then reported, not silently discarded. This is a least-squares experiment, not a claim that inconsistent distances are physically exact.
